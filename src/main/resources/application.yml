@@ -14,6 +14,11 @@ spring:
     hibernate:
       ddl-auto: validate
 
+  # Incluir el mensaje de los errores (ej. el 409 de categorias) para mostrarlo en el frontend
+  web:
+    error:
+      include-message: always
+
   # La API valida los JWT emitidos por este realm de Keycloak.
   # Spring descarga las llaves públicas desde <issuer-uri>/.well-known/openid-configuration
   security:

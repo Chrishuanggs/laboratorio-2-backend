@@ -27,3 +27,7 @@ keycloak:
   client-id: persistencia-api
   # Endpoint de Keycloak que emite tokens (lo usa POST /api/v1/auth/login)
   token-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/token
+  # Cliente de servicio que usa la API para registrar y listar usuarios (Admin REST API)
+  admin-client-id: persistencia-admin
+  admin-client-secret: persistencia-admin-secret
+  admin-uri: http://localhost:8180/admin/realms/tienda

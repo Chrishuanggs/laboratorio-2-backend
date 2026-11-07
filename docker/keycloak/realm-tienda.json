@@ -26,6 +26,16 @@
       "redirectUris": ["http://localhost:*", "https://oauth.pstmn.io/v1/callback"],
       "webOrigins": ["+"],
       "fullScopeAllowed": true
+    },
+    {
+      "clientId": "persistencia-admin",
+      "name": "Cliente de servicio para registrar y listar usuarios",
+      "enabled": true,
+      "publicClient": false,
+      "secret": "persistencia-admin-secret",
+      "serviceAccountsEnabled": true,
+      "directAccessGrantsEnabled": false,
+      "standardFlowEnabled": false
     }
   ],
   "users": [
@@ -48,6 +58,14 @@
       "lastName": "User",
       "credentials": [{ "type": "password", "value": "user123", "temporary": false }],
       "realmRoles": ["USER"]
+    },
+    {
+      "username": "service-account-persistencia-admin",
+      "enabled": true,
+      "serviceAccountClientId": "persistencia-admin",
+      "clientRoles": {
+        "realm-management": ["manage-users", "view-users", "query-users", "view-realm"]
+      }
     }
   ]
 }

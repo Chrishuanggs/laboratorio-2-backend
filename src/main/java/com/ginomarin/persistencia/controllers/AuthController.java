@@ -2,8 +2,12 @@ package com.ginomarin.persistencia.controllers;
 
 import com.ginomarin.persistencia.dto.LoginRequestDTO;
 import com.ginomarin.persistencia.dto.LoginResponseDTO;
+import com.ginomarin.persistencia.dto.RegistroRequestDTO;
 import com.ginomarin.persistencia.service.AuthService;
+import com.ginomarin.persistencia.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +23,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     private final AuthService authService;
+    private final UsuarioService usuarioService;
 
     @PostMapping("/login")
     public LoginResponseDTO login(@RequestBody LoginRequestDTO request) {
         return authService.login(request);
+    }
+
+    // Registro público: crea el usuario en Keycloak con el rol USER
+    @PostMapping("/registro")
+    public ResponseEntity<Void> registro(@RequestBody RegistroRequestDTO request) {
+        usuarioService.registrar(request);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
